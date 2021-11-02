@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue-todo-app</title>
+    <!-- 개발버전, 도움되는 콘솔 경고를 포함. -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css" integrity="sha512-NmLkDIU1C/C88wi324HBc+S2kLhi08PN5GDeUVVVC/BVt/9Izdsc9SVeVfA1UZbY3sHUlDSyRXhCzHfr6hmPPw==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="css/design.css">
+</head>
+<body>
+    <h1>todo-app</h1>
+    <p>vue.js todo-app 만들기</p>
+    <div id="app">
+        <ul>
+            <li v-for="(item, index) in items">
+                <figure>
+                    <img v-bind:src="item.url" v-bind:alt="item.text">
+                    <figcaption>{{ item.title }} <span>남은수량 : {{ item.count }}</span></figcaption>
+                </figure>
+                <p>
+                    <strong>{{ item.price }}{{ item.unit1 }}</strong><em class="sale-pct">{{ item.sale }}{{ item.unit2 }}</em>
+                </p>
+                <button v-on:click="buyItem">구매하기</button>
+                <button v-on:click="cartItem">장바구니</button>
+            </li>
+        </ul>
+    </div>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                items: [
+                    {
+                        url:'https://picsum.photos/id/10/200/250',
+                        text: this.title,
+                        title: '이어폰',
+                        price: 30000,
+                        sale: 20,
+                        unit1: '(원)',
+                        unit2: '%',
+                        count: 10
+                    },
+                    {
+                        url:'https://picsum.photos/id/20/200/250',
+                        text: this.title,
+                        title: '케이스',
+                        price: 15000,
+                        sale: 20,
+                        unit1: '(원)',
+                        unit2: '%',
+                        count: 50
+                    },
+                    {
+                        url:'https://picsum.photos/id/30/200/250',
+                        text: this.title,
+                        title: '지문방지필름',
+                        price: 10000,
+                        sale: 20,
+                        unit1: '(원)',
+                        unit2: '%',
+                        count: 30
+                    },
+                    {
+                        url:'https://picsum.photos/id/40/200/250',
+                        text: this.title,
+                        title: '태블릿거치대',
+                        price: 12000,
+                        sale: 10,
+                        unit1: '(원)',
+                        unit2: '%',
+                        count: 20
+                    }
+                ]
+            },
+            methods : {
+                buyItem: function(){
+                    alert("구매페이지로 이동합니다.");
+                },
+                cartItem: function(){ 
+                    alert("장바구니에 추가합니다.");
+
+                }
+            }
+        });
+    </script>
+</body>
+</html>
