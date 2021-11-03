@@ -4,18 +4,18 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>vue-todo-app</title>
+    <title>vue-shoppingmall</title>
     <!-- 개발버전, 도움되는 콘솔 경고를 포함. -->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css" integrity="sha512-NmLkDIU1C/C88wi324HBc+S2kLhi08PN5GDeUVVVC/BVt/9Izdsc9SVeVfA1UZbY3sHUlDSyRXhCzHfr6hmPPw==" crossorigin="anonymous" />
     <link rel="stylesheet" href="css/design.css">
 </head>
 <body>
-    <h1>todo-app</h1>
+    <h1>shoppingmall-app</h1>
     <p>vue.js 쇼핑몰 리스트페이지 만들기</p>
     <div id="app">
         <ul>
-            <li v-for="(item,idx) in items" v-bind:key="item">
+            <li v-for="(item,idx) in items" v-bind:key="item.text">
                 <figure>
                     <img v-bind:src="item.url" v-bind:alt="item.text">
                     <figcaption>{{ item.title }}<span>남은수량 : {{ item.count }}</span></figcaption>
@@ -24,7 +24,7 @@
                     <strong>{{ item.price }}{{ item.unit1 }}</strong><em class="sale-pct">{{ item.sale }}{{ item.unit2 }}</em>
                 </p>
                 <button v-on:click="buyItem">구매하기</button>
-                <button v-on:click="cartItem">장바구니</button>
+                <button v-on:click="cartItem(idx)">장바구니</button>
             </li>
         </ul>
     </div>
@@ -118,10 +118,12 @@
             methods : {
                 buyItem: function(){
                     alert("구매페이지로 이동합니다.");
+                    // 실제 db에서 반영해야 하지만, 다른 view로 라우팅하면 됨(a.k.a 맵핑)
                 },
-                cartItem: function(index){ 
-                    console.log(this.items[index].count);
-                    alert("장바구니에 추가합니다.");
+                cartItem: function(idx){ 
+                    alert("장바구니에 "+idx+"추가합니다.");
+                    // 실제 db에서 반영해야 하지만, vue에서는 배열/오브젝트에서 Vue.set, Vue.delete 할 수 있음
+                    this.$set(this.items[idx], this.items[idx].count, this.items[idx].count--);
                 }
             }
         });
