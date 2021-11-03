@@ -15,10 +15,10 @@
     <p>vue.js 쇼핑몰 리스트페이지 만들기</p>
     <div id="app">
         <ul>
-            <li v-for="(item, index) in items">
+            <li v-for="(item,idx) in items" v-bind:key="item">
                 <figure>
                     <img v-bind:src="item.url" v-bind:alt="item.text">
-                    <figcaption>{{ item.title }} <span>남은수량 : {{ item.count }}</span></figcaption>
+                    <figcaption>{{ item.title }}<span>남은수량 : {{ item.count }}</span></figcaption>
                 </figure>
                 <p>
                     <strong>{{ item.price }}{{ item.unit1 }}</strong><em class="sale-pct">{{ item.sale }}{{ item.unit2 }}</em>
@@ -34,7 +34,7 @@
             data: {
                 items: [
                     {
-                        url:'https://picsum.photos/id/10/200/250',
+                        url:'https://picsum.photos/id/10/400/250',
                         text: this.title,
                         title: '이어폰',
                         price: 30000,
@@ -44,7 +44,7 @@
                         count: 10
                     },
                     {
-                        url:'https://picsum.photos/id/20/200/250',
+                        url:'https://picsum.photos/id/20/400/250',
                         text: this.title,
                         title: '케이스',
                         price: 15000,
@@ -54,7 +54,7 @@
                         count: 50
                     },
                     {
-                        url:'https://picsum.photos/id/30/200/250',
+                        url:'https://picsum.photos/id/30/400/250',
                         text: this.title,
                         title: '지문방지필름',
                         price: 10000,
@@ -64,7 +64,7 @@
                         count: 30
                     },
                     {
-                        url:'https://picsum.photos/id/40/200/250',
+                        url:'https://picsum.photos/id/40/400/250',
                         text: this.title,
                         title: '태블릿거치대',
                         price: 12000,
@@ -72,6 +72,46 @@
                         unit1: '(원)',
                         unit2: '%',
                         count: 20
+                    },
+                    {
+                        url:'https://picsum.photos/id/10/400/250',
+                        text: this.title,
+                        title: '충전기',
+                        price: 15000,
+                        sale: 10,
+                        unit1: '(원)',
+                        unit2: '%',
+                        count: 10
+                    },
+                    {
+                        url:'https://picsum.photos/id/20/400/250',
+                        text: this.title,
+                        title: '터치펜',
+                        price: 10000,
+                        sale: 100,
+                        unit1: '(원)',
+                        unit2: '%',
+                        count: 20
+                    },
+                    {
+                        url:'https://picsum.photos/id/30/400/250',
+                        text: this.title,
+                        title: '전자파 차단필름',
+                        price: 50000,
+                        sale: 10,
+                        unit1: '(원)',
+                        unit2: '%',
+                        count: 100
+                    },
+                    {
+                        url:'https://picsum.photos/id/40/400/250',
+                        text: this.title,
+                        title: '칫솔',
+                        price: 2000,
+                        sale: 0,
+                        unit1: '(원)',
+                        unit2: '%',
+                        count: 1000
                     }
                 ]
             },
@@ -79,9 +119,9 @@
                 buyItem: function(){
                     alert("구매페이지로 이동합니다.");
                 },
-                cartItem: function(){ 
+                cartItem: function(index){ 
+                    console.log(this.items[index].count);
                     alert("장바구니에 추가합니다.");
-
                 }
             }
         });

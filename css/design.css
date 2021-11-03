@@ -10,15 +10,20 @@ h1+p {
 #app {
     max-width: 1190px;
     margin: 0 auto;
+    overflow: hidden;
 }
 #app > ul {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;    
 }
 #app li {
     text-align: center;
     border: 1px solid #eee;
     box-sizing: border-box;
+}
+#app li img {
+    max-width: 100%;
 }
 .sale-pct::before {
     content:'';
@@ -27,4 +32,7 @@ h1+p {
     height: 10px;
     background: #333;
     margin: 0 15px;
+}
+figcaption, p {
+    margin: 1rem 0;
 }
