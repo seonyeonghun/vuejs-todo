@@ -23,8 +23,10 @@
                 <p>
                     <strong>{{ item.price }}{{ item.unit1 }}</strong><em class="sale-pct">{{ item.sale }}{{ item.unit2 }}</em>
                 </p>
-                <button v-on:click="buyItem">구매하기</button>
-                <button v-on:click="cartItem(idx)">장바구니</button>
+                <div id="btns">
+                    <button v-on:click="buyItem">구매하기</button>
+                    <button v-on:click="cartItem(idx)">장바구니</button>
+                </div>
             </li>
         </ul>
     </div>
@@ -121,7 +123,7 @@
                     // 실제 db에서 반영해야 하지만, 다른 view로 라우팅하면 됨(a.k.a 맵핑)
                 },
                 cartItem: function(idx){ 
-                    alert("장바구니에 "+idx+"추가합니다.");
+                    alert("장바구니에 추가합니다.");
                     // 실제 db에서 반영해야 하지만, vue에서는 배열/오브젝트에서 Vue.set, Vue.delete 할 수 있음
                     this.$set(this.items[idx], this.items[idx].count, this.items[idx].count--);
                 }
