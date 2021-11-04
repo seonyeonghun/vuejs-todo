@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Maven+Pro&family=Noto+Sans+KR&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
     <!-- development version, includes helpful console warnings -->
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
     <link rel="stylesheet" href="css/todo.css">
@@ -21,18 +22,46 @@
         <div id="app">
             <h3>todo list</h3>
             <div class="forms">
-                <input type="text" v-model:value="inputTodo" required placeholder="할일을 적어보세요"><button>추가</button>
+                <input type="text" v-model:value="inputTodo" required placeholder="할일을 적어보세요" v-on:keyUp.enter="addTodo"><button v-on:click="addTodo">추가</button>
             </div>
-            <ul>
-                <li></li>
+            <p v-if="seen" class="warning">할일을 적어주세요, 비어있어요!</p>
+            <ul v-else id="todo-list">
+                <li v-for="(todo,index) in todos" v-bind:key="todo.text">{{ todo.text }} <span class="trash" v-on:click="removeTodo(index)"><i class="far fa-trash-alt"></i></span></li>
             </ul>
+            <hr>
+            <div class="btns">
+                <button v-on:clck="emptyTodo">비우기</button>
+            </div>
         </div>
     </div>
     <script>
         var vm = new Vue({
             el: '#app',
             data: {
-                inputTodo: ''
+                inputTodo: '',
+                seen: true,
+                todos: []
+            },
+            methods: {
+                emptyTodo: function(){
+                    // this.todos.splice(0, this.todos.length-1);
+                    var choice = confirm("전체삭제하면 복구가 불가능합니다. \n 전체삭제 하시겠습니까?");
+                    console.log(choice);
+                },
+                addTodo: function(){
+                    if(!this.inputTodo.length==0) {
+                        this.todos.push({text: this.inputTodo});
+                        this.clearInput();
+                    }
+                    this.seen = false;
+                },
+                clearInput: function() {
+                    this.inputTodo = '';
+                },
+                removeTodo: function(index) {
+                    this.todos.splice(index, 1)
+                    console.log(this.todos.length);
+                }                
             }
         })
     </script>

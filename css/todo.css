@@ -40,3 +40,28 @@ button {
     border: 0;
     width: 15%;
 }
+
+#todo-list {
+    margin: 1rem 2rem;
+    list-style: decimal;
+}
+#todo-list > li {
+    padding:.5rem;
+    position: relative;
+}
+#todo-list > li .trash {
+    position: absolute;
+    right: 1rem;
+    background: #eee;
+    padding: 2px 5px;
+    border-radius: 2px;
+}
+.warning {
+    text-align: center;
+    margin: 2rem;
+    color: #ccc;
+}
+.btns {
+    display: flex;
+    justify-content: flex-end;
+}
