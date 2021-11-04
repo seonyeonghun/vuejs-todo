@@ -1,0 +1,42 @@
+body {
+    font: 16px/1.5 "Noto Sans KR", sans-serif;
+    color: #191919;
+}
+h1 {
+    background: darkslateblue;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+}
+
+h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin: 1.5rem;
+}
+
+h3 {
+    text-align: center;
+    color: #666;
+}
+.container {
+    max-width: 1320px;
+    margin: 0 auto;
+}
+.forms {
+    vertical-align: top;
+    display: flex;
+    justify-content: space-between;
+}
+input[type=text] {
+    width: 80%;
+    border: 1px solid #eee;
+    height: 50px;
+    box-sizing: border-box;
+    text-indent: 1rem;
+}
+button {
+    height: 50px;
+    border: 0;
+    width: 15%;
+}
