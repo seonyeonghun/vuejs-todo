@@ -12,3 +12,6 @@
 ### 진행단계
 * mall-list : 화면구성, 데이터 바인딩
 * todo-app : 화면설계
+
+### 콜라보
+- seonyeonghun2
